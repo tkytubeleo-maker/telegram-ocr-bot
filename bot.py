@@ -62,7 +62,7 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 ]
             }
         ],
-        max_tokens=2000
+        max_completion_tokens=2000
     )
 
     result = response.choices[0].message.content
