@@ -39,7 +39,7 @@ Format JSON:
   "享": []
 }
 
-Chỉ trả JSON.
+Chỉ trả JSON hợp lệ.
 """
 
 PRICE = {
@@ -75,6 +75,7 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         response = client.chat.completions.create(
             model="gpt-5.5",
+            response_format={"type": "json_object"},
             messages=[
                 {
                     "role": "system",
@@ -161,7 +162,7 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
         print(e)
 
         await update.message.reply_text(
-            f"Lỗi:\n{str(e)}"
+            f"Lỗi:\\n{str(e)}"
         )
 
 
