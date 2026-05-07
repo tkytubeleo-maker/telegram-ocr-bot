@@ -11,6 +11,7 @@ from openai import OpenAI
 import base64
 import os
 import json
+from datetime import datetime
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -110,7 +111,13 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         text += "👑👑五象大浪淘沙👑👑\n\n"
 
-        text += "        5月7日出勤47人\n"
+        now = datetime.now() 
+        month = now.month 
+        day = now.day 
+        total_people = 0 
+        for key in data: 
+            total_people += len(data[key]) 
+        text += f" {month}月{day}日出勤{total_people}人\n"
 
         text += "🌹日韩🌹 预约价4 9 9 💲\n\n"
 
